@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/normalize.css">
+    <link rel="stylesheet" href="./styles/app.css">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <div class="container">
+        <header class="sidebar">
+            <div>
+                <figure>
+                    <img class="img-rounded" id="avatar" src="" alt="">
+                    <figcaption>
+                        <h1 id="name"></h1>
+                    </figcaption>
+                </figure>
+                <h2 class="bio" id="bio"></h2>
+                <p class="location" id="location"></p>
+            </div>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Repositorios de Github</th>
+                    </tr>
+                </thead>
+                <tbody id="tableData"></tbody>
+            </table>
+        </main>
+    </div>
+    <script>
+        const REPOS_END_POINT = "repos";
+        const URL = "https://api.github.com/users/Willy93-coder";
+        fetch(URL).then((response) => {
+            const data = response.json().then(
+                json => {
+                    hydrateDOM(json);
+                }
+            );
+        });
+
+        const URL_REPOS = `${URL}/${REPOS_END_POINT}`;
+        fetch(URL_REPOS).then((response) => {
+            const data = response.json().then(
+                json => {
+                    populateDOM(json);
+                }
+            );
+        });
+
+        function populateDOM(json) {
+            const tableEl = document.getElementById('tableData')
+            let tableData;
+            json.forEach(element => {
+                tableData = `<tr>
+                    <td>${element.name}</td>
+                </tr>`;
+                tableEl.innerHTML += tableData;
+            });
+        }
+
+        function hydrateDOM(json) {
+            const { name, location, bio, avatar_url } = json;
+
+
+            const nameEl = document.getElementById('name');
+            const locationEl = document.getElementById('location');
+            const bioEl = document.getElementById('bio');
+            const avatarEl = document.getElementById('avatar');
+
+            nameEl.innerHTML = name;
+            locationEl.innerHTML = location;
+            bioEl.innerHTML = bio;
+            avatarEl.src = avatar_url;
+
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+/* Variables */
+:root {
+    --font-size-h2: 1rem;
+}
+/* Reset */
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles */
+h1 {
+    text-align: center;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    margin: 1rem 0;
+    width: 70%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+tr {
+    border: 1px solid black;
+    text-align: center;
+}
+/* Components */
+.container {
+    display: flex;
+}
+
+.sidebar {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 0 1rem;
+}
+
+.img-rounded {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    width: 6.25rem;
+}
+
+.bio {
+    text-align: center;
+    font-size: var(--font-size-h2);
+}
+
+.location {
+    text-align: center;
+}
